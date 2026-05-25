@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 
 # 1. Настройка страницы (МЕНЯЕМ НАЗВАНИЕ ВКЛАДКИ)
-st.set_page_config(
+API_KEY = st.secrets["API_KEY"]
     page_title="B2 Deutsch-Mentor", # Это будет написано на вкладке в браузере
     page_icon="🇩🇪",                 # Иконка флага на вкладке
     layout="centered"               # Центрируем контент
