@@ -1,18 +1,25 @@
 import streamlit as st
 import google.generativeai as genai
 
-# 1. Настройка страницы (строго в самом начале!)
+# 1. Настройка страницы
 st.set_page_config(
     page_title="B2 Deutsch-Mentor",
     page_icon="🇩🇪",
     layout="centered"
 )
 
-# 2. Безопасная настройка ИИ (подходит и для сайта, и для компа)
-if "API_KEY" in st.secrets:
-    API_KEY = st.secrets["API_KEY"]
-else:
-    # Если запускаешь на компе, он возьмет ключ отсюда:
+# 2. Безопасная настройка ИИ
+API_KEY = None
+
+# Сначала проверяем, есть ли секреты в интернете
+try:
+    if "API_KEY" in st.secrets:
+        API_KEY = st.secrets["API_KEY"]
+except:
+    pass
+
+# Если секретов нет (значит, запустили на компьютере) — берем ключ из кавычек
+if not API_KEY:
     API_KEY = "AIzaSyA7fxHcsYgiWPvRCzSlmnef6NQaULdj08I"
 
 genai.configure(api_key=API_KEY)
